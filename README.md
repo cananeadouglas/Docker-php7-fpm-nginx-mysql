@@ -1,5 +1,40 @@
 https://nunesjr1993.medium.com/como-criar-containers-com-php-mysql-e-nginx-utilizando-o-docker-compose-e50a211b571b
 
+
 Maiores informações
 
-Resumo: 
+Acessar docker.localhost (como descrito no arquivo site.conf)
+
+baixar com o git clone o repositório do projeto e colocar dentro da pasta www/
+
+docker.localhost/nome_do_seu_repositorio_php
+
+2 formas de entrar com o banco. pelo terminal bash e pelo DBeaver CE. baixado pela loja da microsoft.
+
+Resumo de como entrar no mysql.
+
+Para verificar se o servidor MySQL está rodando corretamente e possui a base “teste” criada, vamos acessar esse container via bash com o seguinte comando:
+
+$ docker-compose exec db bash
+
+Lembrando: No Linux é necessário rodar o comando com sudo no início.
+
+Após rodar esse comando você está no bash do container onde o MySQL está rodando, agora vamos acessar o MySQL com usuário root e senha root que definimos no arquivo docker-compose.yml com o seguinte comando:
+
+$ mysql -u root –proot
+
+Após rodar esse comando você vai estar logado no MySQL com usuário root e pode ver as bases criadas, para isso basta executar o seguinte comando:
+
+$ show databases;
+
+Com isso, será mostrada todas as bases criadas, entre elas deve existir a base chamada teste.
+
+Perfeito, agora temos o servidor Nginx rodando com PHP e o MySQL, já podemos criar um script em PHP para se conectar a base teste e verificar se está tudo funcionando corretamente.
+
+Para testar a conexão, primeiro precisamos instalar a extensão PDO para MySQL no PHP pois essa não vem configurado por padrão, é possível definir a instalação dessa extensão no arquivo Dockerfile para que seja instalada já no primeiro build do serviço, como nesse post não iremos abordar o arquivo Dockerfile, vamos realizar essa instalação de forma manual com um comando, para isso vamos executar o seguinte comando no diretório de nosso projeto:
+
+$ docker exec -it php-fpm docker-php-ext-install pdo pdo_mysql
+
+docker-compose restart
+
+Lembrando: No Linux é necessário rodar os comandos com sudo no início.

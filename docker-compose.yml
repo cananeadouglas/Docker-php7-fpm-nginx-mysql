@@ -6,15 +6,15 @@ services:
   ports:
    - "80:80"
   volumes:
-   - ./www:/www
-   - ./site.conf:/etc/nginx/conf.d/site.conf
+   - "$PWD/www:/www/"
+   - "$PWD/site.conf:/etc/nginx/conf.d/site.conf"
   links:
   - php
  php:
   image: php:7.3-fpm
   container_name: php-fpm
   volumes:
-  - ./www:/www
+  - "$PWD/www/:/www/"
   links:
   - db
  db:
