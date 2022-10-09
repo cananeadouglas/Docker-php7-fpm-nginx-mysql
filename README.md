@@ -13,6 +13,8 @@ docker.localhost/nome_do_seu_repositorio_php
 
 Resumo de como entrar no mysql.
 
+FOI ADICIONADO O CONTAINER PHPMYADMIN EXPONDO A PORTA 8081 root root conforme descrito no arquivo YML docker-compose.
+
 Para verificar se o servidor MySQL está rodando corretamente e possui a base “teste” criada, vamos acessar esse container via bash com o seguinte comando:
 
 $ docker-compose exec db bash

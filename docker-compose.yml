@@ -27,3 +27,9 @@ services:
   environment:
     MYSQL_ROOT_PASSWORD: root
     MYSQL_DATABASE: teste
+ phpmyadmin:
+  image: phpmyadmin/phpmyadmin
+  links:
+  - db
+  ports:
+  - "8081:80"
